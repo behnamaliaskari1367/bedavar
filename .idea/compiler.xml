@@ -1,0 +1,30 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project version="4">
+  <component name="CompilerConfiguration">
+    <annotationProcessing>
+      <profile name="Maven default annotation processors profile" enabled="true">
+        <sourceOutputDir name="target/generated-sources/annotations" />
+        <sourceTestOutputDir name="target/generated-test-sources/test-annotations" />
+        <outputRelativeToContentRoot value="true" />
+        <module name="common-util" />
+        <module name="gateway-service" />
+        <module name="config-server" />
+        <module name="backservice-app" />
+        <module name="auth-service" />
+        <module name="common-model" />
+      </profile>
+    </annotationProcessing>
+    <bytecodeTargetLevel>
+      <module name="auth-service" target="1.5" />
+      <module name="backservice-app" target="1.5" />
+      <module name="backservices-parent" target="1.5" />
+      <module name="common-model" target="1.5" />
+      <module name="common-util" target="1.5" />
+      <module name="config-client-oauth2" target="1.8" />
+      <module name="config-server" target="1.5" />
+      <module name="gateway-service" target="1.5" />
+      <module name="registry-service" target="1.8" />
+      <module name="scheduler-service" target="1.8" />
+    </bytecodeTargetLevel>
+  </component>
+</project>
