@@ -1,0 +1,114 @@
+<form [formGroup]="formGroup" (ngSubmit)="onFormSubmit(formGroup.value)">
+  <div fxLayout="column">
+    <div fxLayout="column" fxLayoutAlign="center stretch" class="row">
+      <div fxLayout="row wrap" fxLayoutGap="40px" fxLayoutAlign="start center">
+        <mat-form-field>
+          <label>
+            <input
+              matInput
+              type="text"
+              class="text-eng"
+              formControlName="username"
+              [readonly]="type !== 'new' && type !== 'search'"
+              [placeholder]="langFa.username"
+              [errorStateMatcher]="matcher">
+          </label>
+          <mat-icon matSuffix>account_box</mat-icon>
+          <mat-error *ngIf="!formGroup.get('username').valid && formGroup.get('username').touched">
+            {{langFa.usernameHint}}
+          </mat-error>
+        </mat-form-field>
+        <mat-form-field>
+          <label>
+            <input
+              matInput
+              type="text"
+              formControlName="firstName"
+              [readonly]="type === 'view'"
+              [placeholder]="langFa.firstName">
+          </label>
+          <mat-icon matSuffix>subject</mat-icon>
+        </mat-form-field>
+        <mat-form-field>
+          <label>
+            <input
+              matInput
+              type="text"
+              formControlName="lastName"
+              [readonly]="type === 'view'"
+              [placeholder]="langFa.lastName">
+          </label>
+          <mat-icon matSuffix>toc</mat-icon>
+        </mat-form-field>
+        <mat-form-field>
+          <label>
+            <input
+              matInput
+              type="text"
+              formControlName="branch"
+              [readonly]="type === 'view'"
+              [placeholder]="langFa.branch">
+          </label>
+          <mat-icon matSuffix>graphic_eq</mat-icon>
+        </mat-form-field>
+        <mat-form-field *ngIf="type === 'new'">
+          <label>
+            <input
+              matInput
+              type="password"
+              class="text-eng"
+              formControlName="password"
+              [placeholder]="langFa.password"
+              [errorStateMatcher]="matcher">
+          </label>
+          <mat-icon matSuffix>lock</mat-icon>
+          <mat-error *ngIf="!formGroup.get('password').valid && formGroup.get('password').touched">
+            {{langFa.passwordHint}}
+          </mat-error>
+        </mat-form-field>
+        <mat-form-field *ngIf="type === 'new'">
+          <label>
+            <input
+              matInput
+              type="password"
+              class="text-eng"
+              formControlName="retryPassword"
+              [placeholder]="langFa.confirmPassword">
+          </label>
+          <mat-icon matSuffix>lock</mat-icon>
+          <mat-error *ngIf="!formGroup.get('retryPassword').valid && formGroup.get('retryPassword').touched">
+            {{langFa.usernameHint}}
+          </mat-error>
+        </mat-form-field>
+        <mat-checkbox formControlName="enabled">{{langFa.enabled}}</mat-checkbox>
+      </div>
+      <div fxLayout="row wrap" fxLayoutGap="40px" fxLayoutAlign="center center">
+        <button mat-flat-button
+                type="submit"
+                color="primary"
+                [disabled]="!formGroup.valid"
+                *ngIf="showSubmitButtons">{{langFa.ok}}</button>
+        <button mat-flat-button
+                type="button"
+                color="warn"
+                (click)="cancelForm($event)"
+                *ngIf="showCancelButtons">{{langFa.cancel}}</button>
+        <button mat-flat-button
+                type="button"
+                color="primary"
+                (click)="searchClicked($event)"
+                *ngIf="showSearchButtons">{{langFa.search}}</button>
+        <button mat-flat-button
+                type="button"
+                color="accent"
+                (click)="resetClicked($event)"
+                *ngIf="showResetButtons" [disabled]="!formGroup.dirty">{{langFa.reset}}</button>
+      </div>
+      <div fxLayout="row wrap" fxLayoutGap="40px" fxLayoutAlign="center center">
+        <mat-error *ngIf="formGroup.get('retryPassword').valid && formGroup.hasError('notSame')">
+          {{langFa.samePasswordHint}}
+        </mat-error>
+      </div>
+    </div>
+  </div>
+</form>

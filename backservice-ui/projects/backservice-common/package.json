@@ -1,0 +1,9 @@
+{
+  "name": "@fartak/backservice-common",
+  "version": "0.0.22",
+  "peerDependencies": {
+    "@angular/common": "^8.2.8",
+    "@angular/core": "^8.2.8",
+    "@angular/material": "^8.2.1"
+  }
+}

@@ -1,0 +1,25 @@
+spring:
+  profiles:
+    active: dev
+  application:
+    name: backservice-app
+  cloud:
+    config:
+      uri: http://127.0.0.1:8888/config-server
+      fail-fast: true #the service will not run if it can't reach the config-service
+
+security:
+  oauth2:
+    client:
+      clientId: backservice-app
+      clientSecret: mehdi
+      accessTokenUri: http://127.0.0.1:9090/auth-service/oauth/token
+      scope: CONFIG_SERVER-BACKSERVICE-APP
+      user-authorization-uri: http://127.0.0.1:9090/auth-service/oauth/authorize
+      use-current-uri: false
+    resource:
+      user-info-uri: http://127.0.0.1:9090/auth-service/oauth2/principal
+      token-info-uri: http://127.0.0.1:9090/auth-service/oauth/check_token
+
+encrypt:
+  key: AHGPQMZHTGDLMMNBATSOOQLGQKSHYDNFVCYCDEAH

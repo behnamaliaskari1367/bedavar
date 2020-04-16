@@ -1,0 +1,81 @@
+<mat-card>
+  <mat-card-title>
+    {{langFa.pageTitle}}
+  </mat-card-title>
+  <mat-card-content>
+    <bs-user-form
+      [patchValue]="userFormValue"
+      [showCancelButtons]="false"
+      [showSubmitButtons]="false"
+      [type]="pageType.VIEW"></bs-user-form>
+  </mat-card-content>
+</mat-card>
+<mat-card>
+  <mat-card-content>
+    <div fxLayout="row wrap" fxLayoutGap="40px" fxLayoutAlign="center center">
+      <button type="submit"
+              mat-flat-button
+              [disabled]="!isDirty"
+              color="primary"
+              (click)="onSaveButtonClicked($event)">{{langFa.ok}}</button>
+      <button type="button"
+              mat-flat-button
+              color="accent"
+              (click)="onExitButtonClicked($event)">{{langFa.cancel}}</button>
+    </div>
+  </mat-card-content>
+</mat-card>
+<mat-card>
+  <mat-card-content>
+    <div fxLayout="column" fxLayoutAlign="center stretch" class="row">
+      <div fxLayout="row wrap" fxLayoutGap="40px" fxLayoutAlign="center top">
+        <mat-card>
+          <mat-card-title>
+            {{langFa.assigned}}
+          </mat-card-title>
+          <mat-card-content>
+            <mat-selection-list #assignedSelectionList class="authority-wrapper">
+              <mat-list-option *ngFor="let model of getListValues(assignedMap)" [value]="model.id">
+                {{model.description}}
+                <mat-divider></mat-divider>
+              </mat-list-option>
+            </mat-selection-list>
+          </mat-card-content>
+        </mat-card>
+
+        <div fxLayout="column wrap" fxLayoutGap="20px" fxLayoutAlign="start center">
+          <button
+            mat-mini-fab
+            [disabled]="unAssignedSelectionList.selectedOptions.selected.length === 0"
+            (click)="onAssignClicked($event, unAssignedSelectionList.selectedOptions.selected)"
+            matTooltip="{{langFa.assign}}"
+            color="primary">
+            <mat-icon>thumb_up</mat-icon>
+          </button>
+          <button
+            mat-mini-fab
+            [disabled]="assignedSelectionList.selectedOptions.selected.length === 0"
+            (click)="onUnAssignClicked($event, assignedSelectionList.selectedOptions.selected)"
+            matTooltip="{{langFa.revoke}}"
+            color="warn">
+            <mat-icon>thumb_down</mat-icon>
+          </button>
+        </div>
+
+        <mat-card>
+          <mat-card-title>
+            {{langFa.unAssigned}}
+          </mat-card-title>
+          <mat-card-content>
+            <mat-selection-list #unAssignedSelectionList class="authority-wrapper">
+              <mat-list-option *ngFor="let model of getListValues(unAssignedMap)" [value]="model.id">
+                {{model.description}}
+                <mat-divider></mat-divider>
+              </mat-list-option>
+            </mat-selection-list>
+          </mat-card-content>
+        </mat-card>
+      </div>
+    </div>
+  </mat-card-content>
+</mat-card>
