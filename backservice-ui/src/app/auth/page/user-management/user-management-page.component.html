@@ -1,0 +1,67 @@
+<mat-card>
+  <mat-card-title>
+    {{lang.pageTitle}}
+  </mat-card-title>
+  <mat-card-content>
+    <bs-user-form
+      [patchValue]="userFormValue"
+      [showSearchButtons]="true"
+      [showCancelButtons]="false"
+      [showSubmitButtons]="false"
+      [showResetButtons]="true"
+      (submitted)="onUserSearchButtonSubmitted($event)"
+      [type]="pageType.SEARCH"></bs-user-form>
+  </mat-card-content>
+</mat-card>
+<mat-card>
+  <mat-card-content>
+    <div fxLayout="row wrap" fxLayoutGap="20px" fxLayoutAlign="end center">
+      <div class="button-box" fxLayoutGap="20px">
+        <button
+          mat-mini-fab
+          (click)="onAssignAuthorityButtonSelected($event)"
+          [disabled]="!table.selection.hasValue()"
+          matTooltip="{{lang.assignAuthority}}"
+          color="warn">
+          <mat-icon>how_to_reg</mat-icon>
+        </button>
+        <button
+          mat-mini-fab
+          (click)="onViewButtonSelected($event)"
+          [disabled]="!table.selection.hasValue()"
+          matTooltip="{{lang.view}}"
+          color="primary">
+          <mat-icon>pageview</mat-icon>
+        </button>
+        <button
+          mat-mini-fab
+          (click)="onEditButtonSelected($event)"
+          [disabled]="!table.selection.hasValue()"
+          matTooltip="{{lang.edit}}"
+          color="accent">
+          <mat-icon>edit</mat-icon>
+        </button>
+        <button
+          mat-mini-fab
+          (click)="onChangePasswordButtonSelected($event)"
+          [disabled]="!table.selection.hasValue()"
+          matTooltip="{{lang.changePassword}}"
+          color="warn">
+          <mat-icon>fingerprint</mat-icon>
+        </button>
+        <button
+          mat-mini-fab
+          (click)="onAddButtonSelected($event)"
+          matTooltip="{{lang.add}}"
+          color="primary">
+          <mat-icon>add</mat-icon>
+        </button>
+      </div>
+    </div>
+  </mat-card-content>
+</mat-card>
+<mat-card>
+  <mat-card-content>
+    <bs-user-list #table></bs-user-list>
+  </mat-card-content>
+</mat-card>

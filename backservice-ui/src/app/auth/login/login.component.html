@@ -1,0 +1,50 @@
+<div class="example-container mat-elevation-z8">
+  <mat-card>
+    <mat-card-title>{{loginFa.pageTitle}}</mat-card-title>
+    <mat-card-title>
+      <mat-icon class="icon">account_circle</mat-icon>
+    </mat-card-title>
+    <mat-card-content>
+      <form [formGroup]="loginForm" (ngSubmit)="onFormSubmit(loginForm.value)">
+        <p>
+          <mat-form-field>
+            <label>
+              <input type="text" matInput
+                     [placeholder]="loginFa.username" formControlName="username"
+                     class="text-eng"
+                     [errorStateMatcher]="matcher">
+            </label>
+            <mat-icon matSuffix>account_box</mat-icon>
+            <mat-error>
+              <span *ngIf="!loginForm.get('username').valid && loginForm.get('username').touched">
+                {{loginFa.usernameHint}}
+              </span>
+            </mat-error>
+          </mat-form-field>
+        </p>
+
+        <p>
+          <mat-form-field>
+            <label>
+              <input type="password" matInput
+                     [placeholder]="loginFa.password" formControlName="password"
+                     class="text-eng"
+                     [errorStateMatcher]="matcher">
+            </label>
+            <mat-icon matSuffix>lock</mat-icon>
+            <mat-error>
+              <span *ngIf="!loginForm.get('password').valid && loginForm.get('password').touched">
+                {{loginFa.passwordHint}}
+              </span>
+            </mat-error>
+          </mat-form-field>
+        </p>
+
+        <div class="button-row">
+          <button type="submit" [disabled]="!loginForm.valid" mat-flat-button color="primary">{{loginFa.login}}</button>
+        </div>
+
+      </form>
+    </mat-card-content>
+  </mat-card>
+</div>

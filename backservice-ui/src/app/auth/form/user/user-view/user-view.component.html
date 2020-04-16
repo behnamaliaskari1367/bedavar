@@ -1,0 +1,43 @@
+<form [formGroup]="userForm">
+  <div fxLayout="column">
+    <div fxLayout="column" fxLayoutAlign="center stretch" class="row">
+      <div fxLayout="row wrap" fxLayoutGap="40px" fxLayoutAlign="start center">
+        <mat-form-field>
+          <label>
+            <input type="text" matInput [readonly]="true"
+                   [placeholder]="langFa.username" formControlName="username"
+                   class="text-eng">
+          </label>
+          <mat-icon matSuffix>account_box</mat-icon>
+        </mat-form-field>
+        <mat-form-field>
+          <label>
+            <input type="text" matInput [readonly]="true"
+                   [placeholder]="langFa.firstName" formControlName="firstName">
+          </label>
+          <mat-icon matSuffix>subject</mat-icon>
+        </mat-form-field>
+        <mat-form-field>
+          <label>
+            <input type="text" matInput [readonly]="true"
+                   [placeholder]="langFa.lastName" formControlName="lastName">
+          </label>
+          <mat-icon matSuffix>toc</mat-icon>
+        </mat-form-field>
+        <mat-form-field>
+          <label>
+            <input type="text" matInput [readonly]="true"
+                   [placeholder]="langFa.branch" formControlName="branch">
+          </label>
+          <mat-icon matSuffix>graphic_eq</mat-icon>
+        </mat-form-field>
+      </div>
+      <div fxLayout="row wrap" fxLayoutGap="40px" fxLayoutAlign="start center">
+        <mat-checkbox formControlName="enabled">{{langFa.enabled}}</mat-checkbox>
+      </div>
+    </div>
+    <div fxLayout="row wrap" fxLayoutGap="40px" fxLayoutAlign="center center">
+      <button type="button" mat-flat-button color="primary" (click)="closeForm($event)">{{langFa.ok}}</button>
+    </div>
+  </div>
+</form>

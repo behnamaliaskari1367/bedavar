@@ -1,0 +1,6 @@
+<mat-card>
+  <mat-card-title>{{langFa.pageTitle}}</mat-card-title>
+  <mat-card-content>
+    <bs-user-form [type]="type" [patchValue]="value" (submitted)="onFormSubmitted($event)"></bs-user-form>
+  </mat-card-content>
+</mat-card>

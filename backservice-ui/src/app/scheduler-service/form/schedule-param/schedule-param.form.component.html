@@ -1,0 +1,94 @@
+<form [formGroup]="formGroup" (ngSubmit)="onFormSubmit(formGroup.value)">
+  <div fxLayout="column">
+    <div fxLayout="column" fxLayoutAlign="center stretch" class="row">
+      <div fxLayout="row wrap" fxLayoutGap="40px" fxLayoutAlign="start center">
+        <mat-form-field>
+          <label>
+            <input type="text" matInput
+                   formControlName="serviceName"
+                   [readonly]="type === pageType.VIEW"
+                   [placeholder]="langFa.serviceName"
+                   [errorStateMatcher]="matcher">
+          </label>
+          <mat-icon matSuffix>label</mat-icon>
+          <mat-error>
+                  <span *ngIf="!formGroup.get('serviceName').valid">
+                    {{langFa.serviceName + langFa.invalid}}
+                  </span>
+          </mat-error>
+        </mat-form-field>
+        <mat-form-field>
+          <label>
+            <input type="text" matInput
+                   formControlName="actionName"
+                   [readonly]="type === pageType.VIEW"
+                   [placeholder]="langFa.actionName"
+                   [errorStateMatcher]="matcher">
+          </label>
+          <mat-icon matSuffix>reorder</mat-icon>
+          <mat-error>
+                  <span *ngIf="!formGroup.get('actionName').valid">
+                    {{langFa.actionName + langFa.invalid}}
+                  </span>
+          </mat-error>
+        </mat-form-field>
+        <mat-form-field *ngIf="type !== pageType.SEARCH">
+          <label>
+            <input type="text" matInput
+                   formControlName="cron"
+                   [readonly]="type === pageType.VIEW"
+                   [placeholder]="langFa.cron"
+                   [errorStateMatcher]="matcher">
+          </label>
+          <mat-icon matSuffix>schedule</mat-icon>
+          <mat-error>
+                  <span *ngIf="!formGroup.get('cron').valid">
+                    {{langFa.cron + langFa.invalid}}
+                  </span>
+          </mat-error>
+        </mat-form-field>
+        <mat-form-field *ngIf="type !== pageType.SEARCH">
+          <label>
+            <input type="text" matInput
+                   formControlName="url"
+                   [readonly]="type === pageType.VIEW"
+                   [placeholder]="langFa.url"
+                   [errorStateMatcher]="matcher">
+          </label>
+          <mat-icon matSuffix>my_location</mat-icon>
+          <mat-error>
+                  <span *ngIf="!formGroup.get('url').valid">
+                    {{langFa.url + langFa.invalid}}
+                  </span>
+          </mat-error>
+        </mat-form-field>
+        <section>
+          <mat-slide-toggle
+            formControlName="enabled"><label>{{langFa.enabled}}</label></mat-slide-toggle>
+        </section>
+      </div>
+      <div fxLayout="row wrap" fxLayoutGap="40px" fxLayoutAlign="center center">
+        <button mat-flat-button
+                type="submit"
+                color="primary"
+                [disabled]="!formGroup.valid"
+                *ngIf="showSubmitButtons && type !== pageType.VIEW">{{langFa.ok}}</button>
+        <button mat-flat-button
+                type="button"
+                color="warn"
+                (click)="cancelForm($event)"
+                *ngIf="showCancelButtons">{{langFa.cancel}}</button>
+        <button mat-flat-button
+                type="button"
+                color="primary"
+                (click)="searchClicked($event)"
+                *ngIf="showSearchButtons">{{langFa.search}}</button>
+        <button mat-flat-button
+                type="button"
+                color="accent"
+                (click)="resetClicked($event)"
+                *ngIf="showResetButtons" [disabled]="!formGroup.dirty">{{langFa.reset}}</button>
+      </div>
+    </div>
+  </div>
+</form>

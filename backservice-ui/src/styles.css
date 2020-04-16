@@ -1,0 +1,31 @@
+/*@import '@angular/material/prebuilt-themes/deeppurple-amber.css';*/
+
+@font-face {
+  font-family: IRANSansWebFarsiNum;
+  font-style: normal;
+  font-weight: normal;
+  src: url('assets/font/iransans/IRANSansWeb_FaNum.eot');
+  src: url('assets/font/iransans/IRANSansWeb_FaNum.eot?#iefix') format('embedded-opentype'), /* IE6-8 */ url('assets/font/iransans/IRANSansWeb_FaNum.woff2') format('woff2'), /* Chrome36+, Opera24+*/ url('assets/font/iransans/IRANSansWeb_FaNum.woff') format('woff'), /* FF3.6+, IE9, Chrome6+, Saf5.1+*/ url('assets/font/iransans/IRANSansWeb_FaNum.ttf') format('truetype');
+}
+
+html, body {
+  height: 100%;
+}
+
+body {
+  /*margin: 0;*/
+  font-family: IRANSansWebFarsiNum, Roboto, "Helvetica Neue", sans-serif;
+}
+
+* {
+  font-family: IRANSansWebFarsiNum, Roboto, "Helvetica Neue", sans-serif;
+}
+
+.text-eng {
+  text-align: left!important;
+}
+
+
+.mat-menu-item {
+  font-family: IRANSansWebFarsiNum, Roboto, "Helvetica Neue", sans-serif;
+}

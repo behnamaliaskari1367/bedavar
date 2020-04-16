@@ -1,0 +1,15 @@
+<div fxLayout="row wrap" fxLayoutAlign="center center">
+  <div *ngFor="let card of cards">
+    <mat-card [style.background-color]="card.color" (click)="cardSelected($event, card)">
+      <mat-card-subtitle *ngIf="card.parent">
+        {{card.parent}}
+      </mat-card-subtitle>
+      <mat-card-title>
+        {{card.displayName}}
+      </mat-card-title>
+      <mat-card-title fxLayoutAlign="center stretch">
+        <mat-icon class="icon">{{card.iconName}}</mat-icon>
+      </mat-card-title>
+    </mat-card>
+  </div>
+</div>

@@ -1,0 +1,77 @@
+<div>
+  <mat-toolbar color="primary" class="home-toolbar">
+    <div>
+      <button mat-icon-button (click)="appDrawer.toggle()">
+        <mat-icon>menu</mat-icon>
+      </button>
+    </div>
+
+    <a mat-button class="companyName" routerLink="/dashboard">
+      <span>{{lang.brand}}</span>
+    </a>
+    <span class="example-spacer"></span>
+    <div fxShow="true" fxHide.lt-md="true">
+      <a mat-button (click)="back($event)">
+        <mat-icon>arrow_forward</mat-icon>
+      </a>
+
+      <a mat-button [matMenuTriggerFor]="bsMenu">
+        <mat-icon>dvr</mat-icon>
+      </a>
+      <mat-menu #bsMenu="matMenu">
+        <button mat-menu-item (click)="appInfo($event)">
+          <mat-icon>info</mat-icon>
+          {{lang.about}}
+        </button>
+        <button mat-menu-item (click)="changeTheme($event)">
+          <mat-icon>palette</mat-icon>
+          {{lang.changeTheme}}
+        </button>
+      </mat-menu>
+
+      <a mat-button (click)="forward($event)">
+        <mat-icon>arrow_back</mat-icon>
+      </a>
+      <ng-template [ngIf]="!(isLoggedIn | async)">
+        <a mat-button routerLink="/auth">
+          <mat-icon>lock</mat-icon>
+        </a>
+      </ng-template>
+      <ng-template [ngIf]="(isLoggedIn | async)">
+        <a mat-button [matMenuTriggerFor]="menu">
+          <mat-icon>account_box</mat-icon>
+        </a>
+        <mat-menu #menu="matMenu">
+          {{userName}}
+        </mat-menu>
+        <mat-menu #menu="matMenu">
+          <button mat-menu-item (click)="userInfo($event)">
+            <mat-icon>face</mat-icon>
+            {{lang.userInfo}}
+          </button>
+          <button mat-menu-item (click)="changePassword($event)">
+            <mat-icon>fingerprint</mat-icon>
+            {{lang.resetPassword}}
+          </button>
+          <button mat-menu-item (click)="logout($event)">
+            <mat-icon>exit_to_app</mat-icon>
+            {{lang.logout}}
+          </button>
+        </mat-menu>
+      </ng-template>
+    </div>
+
+  </mat-toolbar>
+  <mat-sidenav-container fxFlexFill class="example-container">
+
+    <mat-sidenav #appDrawer fxLayout="column" mode="over" opened="false" fxHide.lt-sm="true">
+      <mat-nav-list>
+        <app-menu-list-item *ngFor="let item of navItems" [item]="item"></app-menu-list-item>
+      </mat-nav-list>
+    </mat-sidenav>
+
+    <mat-sidenav-content fxFlexFill>
+      <router-outlet style="text-align: right"></router-outlet>
+    </mat-sidenav-content>
+  </mat-sidenav-container>
+</div>

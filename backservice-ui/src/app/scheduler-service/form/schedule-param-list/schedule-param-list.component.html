@@ -1,0 +1,40 @@
+<table mat-table [dataSource]="datasource" matSort matSortDisableClear class="mat-elevation-z8">
+
+  <ng-container matColumnDef="select">
+    <th mat-header-cell *matHeaderCellDef>#</th>
+    <td mat-cell *matCellDef="let row">
+      <mat-checkbox (click)="$event.stopPropagation()"
+                    (change)="$event ? selection.toggle(row) : null"
+                    [checked]="selection.isSelected(row)"
+                    [aria-label]="checkboxLabel(row)">
+      </mat-checkbox>
+    </td>
+  </ng-container>
+
+  <ng-container matColumnDef="serviceName">
+    <th mat-header-cell *matHeaderCellDef mat-sort-header>{{lang.serviceName}}</th>
+    <td mat-cell *matCellDef="let element"> {{element.serviceName}} </td>
+  </ng-container>
+
+  <ng-container matColumnDef="actionName">
+    <th mat-header-cell *matHeaderCellDef mat-sort-header>{{lang.actionName}}</th>
+    <td mat-cell *matCellDef="let element"> {{element.actionName}} </td>
+  </ng-container>
+
+  <ng-container matColumnDef="enabled">
+    <th mat-header-cell *matHeaderCellDef mat-sort-header>{{lang.enabled}}</th>
+    <td mat-cell *matCellDef="let element">
+      <mat-icon color="accent" *ngIf="element.enabled">check_box</mat-icon>
+      <mat-icon *ngIf="!element.enabled">check_box_outline_blank</mat-icon>
+    </td>
+  </ng-container>
+
+  <tr mat-header-row *matHeaderRowDef="getDisplayedColumns()"></tr>
+  <tr mat-row *matRowDef="let row; columns: getDisplayedColumns();" (click)="selection.toggle(row)"></tr>
+</table>
+
+<div>
+  <mat-paginator [length]="totalRecord$ | async"
+                 [pageSizeOptions]="pageSizeOptions"
+                 [pageSize]="pageSize"></mat-paginator>
+</div>

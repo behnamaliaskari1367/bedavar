@@ -1,0 +1,40 @@
+.companyName{
+  font-size: 150%;
+}
+
+.mat-toolbar{
+  height: 7vh;
+  min-height: 50px;
+}
+
+.mat-sidenav {
+  width: 260px;
+}
+
+.mat-sidenav-container{
+  min-height: 88vh !important;
+}
+
+.example-icon {
+  padding: 0 14px;
+}
+
+.example-spacer {
+  flex: 1 1 auto;
+}
+
+.mat-sidenav-content{
+  font-size: 200%;
+}
+
+.large-icon{
+  font-size: 80px;
+  width: 80px;
+  height: 80px;
+}
+
+.version-info {
+  font-size: 8pt;
+  padding: 8px;
+  align-self: flex-end;
+}
