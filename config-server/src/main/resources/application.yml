@@ -1,0 +1,35 @@
+server:
+  servlet:
+    context-path: /config-server
+  port: 8888
+
+spring:
+  jmx:
+    enabled: false
+  cloud:
+    config:
+      server:
+        git:
+          uri: file:/C:/fbti_apps/0_config_files
+        bootstrap: true
+        encrypt:
+          enabled: false
+
+eureka:
+  instance:
+    prefer-ip-address: true
+  client:
+    serviceUrl:
+      defaultZone: http://config-server:config-server-pass@localhost:8761/eureka/
+    enabled: false
+
+security:
+  oauth2:
+    client:
+      clientId: config-server
+      clientSecret: mehdi
+      accessTokenUri: http://127.0.0.1:9090/auth-service/oauth/token
+      grant-type: client_credentials
+      scope: server
+    resource:
+      userInfoUri: http://127.0.0.1:9090/auth-service/oauth2/principal
